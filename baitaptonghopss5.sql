@@ -1,4 +1,4 @@
-CREATE DATABASE baitaptonghop_db;
+-- CREATE DATABASE baitaptonghop_db;
 USE baitaptonghop_db;
 
 DROP TABLE IF EXISTS Orders;
@@ -52,8 +52,8 @@ INSERT INTO Orders (total_amount, quantity, status, id) VALUES
 (250000, 2, 'shipped', 1),
 (600000, 6, 'completed', 2),
 (175000, 1, 'pending', 3),
-(720000, 4, 'completed', 4),
-(910000, 5, 'shipped', 5),
+(7200000, 4, 'completed', 4),
+(9100000, 5, 'shipped', 5),
 (110000, 1, 'pending', 6),
 (470000, 3, 'completed', 7),
 (520000, 2, 'cancelled', 8),
@@ -62,7 +62,7 @@ INSERT INTO Orders (total_amount, quantity, status, id) VALUES
 
 (340000, 2, 'completed', 1),
 (560000, 3, 'shipped', 2),
-(780000, 5, 'completed', 3),
+(7800000, 5, 'completed', 3),
 (190000, 1, 'pending', 4),
 (820000, 4, 'completed', 5),
 (230000, 2, 'cancelled', 6),
@@ -71,7 +71,7 @@ INSERT INTO Orders (total_amount, quantity, status, id) VALUES
 (580000, 4, 'shipped', 9),
 (670000, 5, 'completed', 10),
 
-(290000, 2, 'pending', 1),
+(2900000, 2, 'pending', 1),
 (310000, 3, 'completed', 2),
 (470000, 4, 'shipped', 3),
 (530000, 2, 'completed', 4),
@@ -82,7 +82,7 @@ INSERT INTO Orders (total_amount, quantity, status, id) VALUES
 (150000, 1, 'cancelled', 9),
 (260000, 2, 'pending', 10),
 
-(370000, 3, 'completed', 1),
+(3700000, 3, 'completed', 1),
 (480000, 2, 'shipped', 2),
 (590000, 4, 'completed', 3),
 (610000, 5, 'pending', 4),
@@ -91,5 +91,17 @@ INSERT INTO Orders (total_amount, quantity, status, id) VALUES
 (940000, 7, 'completed', 7),
 (210000, 2, 'pending', 8),
 (320000, 3, 'completed', 9),
-(430000, 4, 'shipped', 10);
+(4300000, 4, 'shipped', 10);
 
+
+SELECT *,
+    CASE 
+        WHEN total_amount > 4000000 THEN 'Nguy hiểm'
+        ELSE 'Bình thường'
+    END AS Alert_Level
+FROM Orders
+WHERE 
+    total_amount BETWEEN 200000 AND 900000
+    AND status != 'cancelled'
+ORDER BY total_amount DESC
+LIMIT 20 OFFSET 0;
